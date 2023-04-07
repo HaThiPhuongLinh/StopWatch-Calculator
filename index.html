@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StopWatch</title>
+    <style>
+        body {
+            background-color: brown;
+        }
+
+        #container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            height: 180px;
+            background-color: white;
+            border-radius: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        #display {
+            font-size: 70px;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #button {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+
+        #start {
+            font-size: 15px;
+            border: none;
+            background-color: #20b380;
+            color: white;
+            width: 80px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        #start:hover {
+            background: black;
+            border: none;
+            color: #20b380;
+            font-weight: bold;
+        }
+
+        #pause {
+            font-size: 15px;
+            border: none;
+            background-color: #205e94;
+            color: white;
+            width: 80px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        #pause:hover {
+            background: black;
+            border: none;
+            color: #205e94;
+            font-weight: bold;
+        }
+
+        #reset {
+            font-size: 15px;
+            border: none;
+            background-color: red;
+            color: white;
+            width: 80px;
+            height: 40px;
+            border-radius: 10px;
+        }
+
+        #reset:hover {
+            background: black;
+            border: none;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="container">
+            <div style="width: 350px;">
+                <div id="display">
+                    <span id="second">00</span>:
+                    <span id="milisecond">00</span>
+                </div>
+                <div id="button">
+                    <button id="start">START</button>
+                    <button id="pause">PAUSE</button>
+                    <button id="reset">RESET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        var start = document.getElementById('start');
+        var pause = document.getElementById('pause');
+        var reset = document.getElementById('reset');
+        var second = 00;
+        var milisecond = 00;
+        var appendSecond = document.getElementById('second');
+        var appendMilisecond = document.getElementById('milisecond');
+
+        var Interval;
+
+        start.onclick = function () {
+            Interval = setInterval(startTime, 10);
+        }
+
+        pause.onclick = function () {
+            clearInterval(Interval);
+        }
+
+
+        reset.onclick = function () {
+            clearInterval(Interval);
+            milisecond = "00";
+            second = "00";
+            appendMilisecond.innerHTML = milisecond;
+            appendSecond.innerHTML = second;
+        }
+
+
+        function startTime() {
+            milisecond++;
+            if (milisecond <= 9) {
+                appendMilisecond.innerHTML = "0" + milisecond;
+            }
+            if (milisecond > 9) {
+                appendMilisecond.innerHTML = milisecond;
+            }
+            if (milisecond > 99) {
+                console.log('second');
+                second++;
+                appendSecond.innerHTML = "0" + second;
+                milisecond = 0;
+                appendMilisecond.innerHTML = "0" + 0;
+            }
+            if (second > 9) {
+                appendSecond.innerHTML = second;
+            }
+        }
+
+    </script>
+</body>
+
+</html>
